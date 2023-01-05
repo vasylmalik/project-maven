@@ -48,6 +48,13 @@
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>{project.basedir}/lib</directory>
+                <targetPath>lib/</targetPath>
+            </resource>
+        </resources>
+
         <plugins>
             <!-- Usual compilation -->
             <plugin>
