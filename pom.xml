@@ -93,10 +93,14 @@
                 <version>2.4</version>
                 <configuration>
                     <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <mainClass>org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader</mainClass>
+                        </manifest>
                         <manifestEntries>
-                            <Class-Path>lib</Class-Path>
-                            <Main-Class>org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader.java</Main-Class>
-                            <Rsrc-Main-Class>com.javarush.games.racer.RacerGame.java</Rsrc-Main-Class>
+                            <Class-Path>./</Class-Path>
+                            <Rsrc-Main-Class>com.javarush.games.racer.RacerGame</Rsrc-Main-Class>
                         </manifestEntries>
                     </archive>
                 </configuration>
