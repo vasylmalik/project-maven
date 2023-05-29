@@ -23,6 +23,7 @@
             <systemPath>${project.basedir}/lib/desktop-game-engine.jar</systemPath>
         </dependency>
 
+
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
@@ -47,10 +48,8 @@
     <build>
         <resources>
             <resource>
-                <directory>${project.build.directory}</directory>
-                <includes>
-                    <include>lib/**/*.jar</include>
-                </includes>
+                <directory>${project.build.directory}/dependencies</directory>
+                <targetPath>lib</targetPath>
             </resource>
         </resources>
         <plugins>
@@ -77,21 +76,18 @@
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.4</version>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.1.2</version>
                 <executions>
                     <execution>
+                        <id>copy-dependencies</id>
                         <phase>package</phase>
                         <goals>
-                            <goal>shade</goal>
+                            <goal>copy-dependencies</goal>
                         </goals>
                         <configuration>
-                            <transformers>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader</mainClass>
-                                </transformer>
-                            </transformers>
-                            <finalName>${project.artifactId}-${project.version}-fat.jar</finalName>
+                            <includeScope>compile</includeScope>
+                            <outputDirectory>${project.build.directory}/dependencies</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>
