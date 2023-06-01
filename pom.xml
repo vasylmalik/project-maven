@@ -30,7 +30,7 @@
             <artifactId>desktop-game-engine</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-            <systemPath>C:\Users\thehe\Desktop\JAVA\ModuleTwo\project-maven\lib\desktop-game-engine.jar</systemPath>
+            <systemPath>${project.basedir}/lib/desktop-game-engine.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
