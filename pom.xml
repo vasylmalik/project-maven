@@ -86,15 +86,20 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>3.3.0</version>
+                <version>2.4</version>
+
                 <configuration>
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <classpathPrefix>${project.build.directory}/lib/</classpathPrefix>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <classpathLayoutType>simple</classpathLayoutType>
                             <mainClass>org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader</mainClass>
-                            <!--<rsrcMainClass>com.javarush.games.racer.RacerGame</rsrcMainClass>-->
                         </manifest>
+                        <manifestEntries>
+                            <Rsrc-Class-Path>com.javarush.games.racer.RacerGame</Rsrc-Class-Path>
+                        </manifestEntries>
+
                     </archive>
                 </configuration>
             </plugin>
