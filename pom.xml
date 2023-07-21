@@ -93,13 +93,13 @@
                 <executions>
                     <execution>
                         <id>copy-dependencies</id>
-                        <phase>compile</phase>
+                        <phase>package</phase>
                         <goals>
                             <goal>copy-dependencies</goal>
                         </goals>
                         <configuration>
                             <outputDirectory>
-                                ${project.build.directory}\lib
+                                ${project.build.directory}\dep
                             </outputDirectory>
                             <overWriteReleases>false</overWriteReleases>
                             <overWriteSnapshots>false</overWriteSnapshots>
@@ -117,11 +117,11 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <mainClass>org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader</mainClass>
-                            <classpathPrefix>lib/</classpathPrefix>
+                            <classpathPrefix>dep/</classpathPrefix>
                         </manifest>
                         <manifestEntries>
                             <Class-Path>./</Class-Path>
-                            <Rsrs-Main-Class>com.javarush.games.racer.RacerGame</Rsrs-Main-Class>
+                            <Rsrc-Main-Class>com.javarush.games.racer.RacerGame</Rsrc-Main-Class>
                         </manifestEntries>
                     </archive>
                 </configuration>
