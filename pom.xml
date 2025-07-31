@@ -71,7 +71,6 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.5.3</version>
                 <configuration>
-                    <skipTests>true</skipTests>
                     <excludes>
                         <exclude>**/StrangeTest.java</exclude>
                     </excludes>
