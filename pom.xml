@@ -41,9 +41,9 @@
         <resources>
             <resource>
                 <directory>${project.build.directory}/lib</directory>
-                <targetPath>lib</targetPath>
+                <targetPath>./lib</targetPath>
                 <includes>
-                    <include>*.jar</include>
+                    <include>**/*.jar</include>
                 </includes>
             </resource>
         </resources>
@@ -55,7 +55,7 @@
                 <executions>
                     <execution>
                         <id>copy-dependencies</id>
-                        <phase>package</phase>
+                        <phase>generate-resources</phase>
                         <goals>
                             <goal>copy-dependencies</goal>
                         </goals>
@@ -89,9 +89,15 @@
                         </manifest>
                         <manifestEntries>
                             <Rsrc-Main-Class>com.javarush.games.racer.RacerGame</Rsrc-Main-Class>
+                            <Class-Path>./</Class-Path>
                         </manifestEntries>
                     </archive>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.1</version>
             </plugin>
 
             <!-- Usual compilation -->
