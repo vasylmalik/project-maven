@@ -14,10 +14,49 @@
     </properties>
 
     <dependencies>
-
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.12.0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-controls -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>18.0.1</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.8.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.8.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.mygame</groupId>
+            <artifactId>desktop-game-engine</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>target/dependency</directory>
+                <targetPath>lib</targetPath>
+                <includes>
+                    <include>**/*.jar</include>
+                </includes>
+            </resource>
+        </resources>
+
         <plugins>
             <!-- Usual compilation -->
             <plugin>
@@ -28,6 +67,55 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.6.1</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/libs</outputDirectory>
+                            <includeScope>compile</includeScope>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <Class-Path>./</Class-Path>
+                            <mainClass>org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader</mainClass>
+                            <Rsrc-Main-Class>com.javarush.games.racer.RacerGame</Rsrc-Main-Class>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.3</version> <!-- Use the latest stable version -->
+                <configuration>
+                    <includes>
+                        <exclude>**/*Test.java</exclude>
+                    </includes>
+                    <excludes>
+                        <exclude>**/StrangeTest.java</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+
 
             <!-- Run java-fx app over Maven -->
             <plugin>
