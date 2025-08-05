@@ -94,10 +94,14 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <Class-Path>./</Class-Path>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
                             <mainClass>org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader</mainClass>
-                            <Rsrc-Main-Class>com.javarush.games.racer.RacerGame</Rsrc-Main-Class>
                         </manifest>
+                        <manifestEntries>
+                            <Class-Path>./lib/</Class-Path> <!-- Путь к зависимостям -->
+                            <Rsrc-Main-Class>com.javarush.games.racer.RacerGame</Rsrc-Main-Class>
+                        </manifestEntries>
                     </archive>
                 </configuration>
             </plugin>
