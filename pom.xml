@@ -49,11 +49,8 @@
     <build>
         <resources>
             <resource>
-                <directory>target/dependency</directory>
-                <targetPath>lib</targetPath>
-                <includes>
-                    <include>**/*.jar</include>
-                </includes>
+                <directory>${project.build.directory}/dependency</directory>
+                <targetPath>lib/</targetPath>
             </resource>
         </resources>
 
@@ -72,17 +69,16 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>3.6.1</version>
+                <configuration>
+                    <outputDirectory>${project.build.directory}/dependency</outputDirectory>
+                    <includeScope>compile</includeScope>
+                </configuration>
                 <executions>
                     <execution>
-                        <id>copy-dependencies</id>
-                        <phase>package</phase>
+                        <phase>generate-resources</phase>
                         <goals>
                             <goal>copy-dependencies</goal>
                         </goals>
-                        <configuration>
-                            <outputDirectory>${project.build.directory}/libs</outputDirectory>
-                            <includeScope>compile</includeScope>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -95,12 +91,12 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <classpathPrefix>lib/</classpathPrefix>
                             <mainClass>org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader</mainClass>
+                            <classPathPrefix>lib/</classPathPrefix>
                         </manifest>
                         <manifestEntries>
-                            <Class-Path>./lib/</Class-Path> <!-- Путь к зависимостям -->
                             <Rsrc-Main-Class>com.javarush.games.racer.RacerGame</Rsrc-Main-Class>
+                            <Class-Path>./</Class-Path>
                         </manifestEntries>
                     </archive>
                 </configuration>
@@ -111,9 +107,6 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.5.3</version> <!-- Use the latest stable version -->
                 <configuration>
-                    <includes>
-                        <exclude>**/*Test.java</exclude>
-                    </includes>
                     <excludes>
                         <exclude>**/StrangeTest.java</exclude>
                     </excludes>
