@@ -18,7 +18,7 @@ package org.eclipse.jdt.internal.jarinjarloader;
  * Constants used in the Jar-in-Jar loader.
  *
  * Some of these are duplicated in JIJConstants in the source for the Runnable Jar File Export Wizard:
- * {@link org.eclipse.jdt.internal.ui.jarpackagerfat}.
+
  *
  * @since 3.6
  */
