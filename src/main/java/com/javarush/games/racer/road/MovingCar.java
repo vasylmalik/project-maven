@@ -3,11 +3,11 @@ package com.javarush.games.racer.road;
 import java.util.List;
 
 public class MovingCar extends RoadObject {
-    private int dx = 0;
+    private int dx = 1;
 
     public MovingCar(int x, int y) {
         super(RoadObjectType.DRUNK_CAR, x, y);
-        speed = 1;
+        speed = 0;
     }
 
     @Override
