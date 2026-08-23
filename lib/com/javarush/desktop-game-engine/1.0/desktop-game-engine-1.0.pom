@@ -1,0 +1,9 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.javarush</groupId>
+    <artifactId>desktop-game-engine</artifactId>
+    <version>1.0</version>
+
+    <packaging>jar</packaging>
+</project>
